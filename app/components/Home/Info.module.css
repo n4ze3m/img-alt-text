@@ -1,0 +1,7 @@
+.info {
+  text-align: center;
+  margin-top: var(--mantine-spacing-md);
+  @media (max-width: $mantine-breakpoint-sm) {
+    text-align: left;
+  }
+}

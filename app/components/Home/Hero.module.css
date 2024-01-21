@@ -1,0 +1,16 @@
+.title {
+    font-weight: 800;
+    font-size: rem(40px);
+    letter-spacing: rem(-1px);
+    color: var(--mantine-color-black);
+    margin-bottom: var(--mantine-spacing-xl);
+    text-align: center;
+    font-family:
+      Greycliff CF,
+      var(--mantine-font-family);
+  
+    @media (max-width: $mantine-breakpoint-xs) {
+      font-size: rem(30px);
+      text-align: left;
+    }
+  }
