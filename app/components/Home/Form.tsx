@@ -21,6 +21,7 @@ import { notifications } from "@mantine/notifications";
 import { useScrollIntoView } from "@mantine/hooks";
 import React from "react";
 import { HomeInfoAlt } from "./Info";
+import { ClientOnly } from "../ClientOnly";
 
 declare global {
   interface Window {
@@ -33,9 +34,7 @@ export const HomeFormAlt = () => {
     offset: 60,
   });
 
-  const [generatedText, setGeneratedText] = React.useState<string | null>(
-  null
-  );
+  const [generatedText, setGeneratedText] = React.useState<string | null>(null);
 
   const form = useForm({
     initialValues: {
@@ -97,6 +96,11 @@ export const HomeFormAlt = () => {
           onSubmit={form.onSubmit((e) => {
             const recaptchaResponse = window?.grecaptcha?.getResponse();
             if (!recaptchaResponse) {
+              notifications.show({
+                title: "Error",
+                message: "Please complete the captcha",
+                color: "red",
+              });
               return;
             }
             generate({ ...e, token: recaptchaResponse });
@@ -127,10 +131,14 @@ export const HomeFormAlt = () => {
             required
             {...form.getInputProps("response_format")}
           />
-          <div
-            className="g-recaptcha"
-            data-sitekey="6LdiqVcpAAAAANuur8xdeOZNug31L7JrEntUbwQy"
-          ></div>
+          <ClientOnly>
+            {() => (
+              <div
+                className="g-recaptcha"
+                data-sitekey="6LdiqVcpAAAAANuur8xdeOZNug31L7JrEntUbwQy"
+              ></div>
+            )}
+          </ClientOnly>
 
           <Button
             leftSection={<IconSparkles size={20} />}

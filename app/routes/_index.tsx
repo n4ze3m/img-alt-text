@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import { ClientOnly } from "~/components/ClientOnly";
 import { HomeFormAlt } from "~/components/Home/Form";
 import { HomeHeroAlt } from "~/components/Home/Hero";
 
@@ -21,7 +20,7 @@ export default function Index() {
   return (
     <>
       <HomeHeroAlt />
-      <ClientOnly>{() => <HomeFormAlt />}</ClientOnly>
+      <HomeFormAlt />
     </>
   );
 }
