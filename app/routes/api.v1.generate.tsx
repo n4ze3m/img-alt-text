@@ -1,6 +1,7 @@
 import { ActionFunctionArgs, json } from "@remix-run/node";
 import { generateAltText } from "~/utils/ai";
 import verifyRecaptcha from "~/utils/recaptcha";
+import { supabase } from "~/utils/supabase";
 
 interface Body {
   token: string;
@@ -17,5 +18,13 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   const response = await generateAltText(base64, response_format);
+
+  if (process.env.LOGS === "true") {
+    await supabase.from("Alt").insert([
+      {
+        text: response || "No alt text generated",
+      },
+    ]);
+  }
   return json({ response });
 }
