@@ -131,14 +131,10 @@ export const HomeFormAlt = () => {
             required
             {...form.getInputProps("response_format")}
           />
-          <ClientOnly>
-            {() => (
-              <div
-                className="g-recaptcha"
-                data-sitekey="6LdiqVcpAAAAANuur8xdeOZNug31L7JrEntUbwQy"
-              ></div>
-            )}
-          </ClientOnly>
+          <div
+            className="g-recaptcha"
+            data-sitekey="6LdiqVcpAAAAANuur8xdeOZNug31L7JrEntUbwQy"
+          ></div>
 
           <Button
             leftSection={<IconSparkles size={20} />}
